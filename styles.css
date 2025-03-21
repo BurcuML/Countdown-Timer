@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+.container {
+    background: url("img/cozy\ winter.webp");
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex-direction: row;
+}
+
+.glass {
+    margin: 25px;
+    width: 13%;
+    height: 25%;
+    /* From https://css.glass */
+    background: rgba(255, 191, 70, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9.9px);
+    -webkit-backdrop-filter: blur(9.9px);
+    border: 1px solid rgba(255, 191, 70, 0.5);
+}
+.glass span{
+    font-size: 5rem;
+    color: #724100;
+}
+.flex{
+     display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .glass {
+        width: 13%;
+        height: 13%;
+    }
+    span {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .glass {
+        width: 13%;
+        height: 13%;
+    }
+    span {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .glass {
+        width: 10%;
+        height: 10%;
+    }
+    span {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 240px) {
+    .glass {
+        width: 10%;
+        height: 10%;
+    }
+    span {
+        font-size: 0.1rem;
+    }
+}
+
