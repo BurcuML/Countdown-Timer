@@ -11,16 +11,15 @@
 <body>
     <div class="container">
         <div class="glassmorph hidden" id="glassmorph">
-            <div class="glass flex">
-                <span id="hours">00</span>
-            </div>
             <div class="glass flex"><span id="minutes">00</span></div>
-            <div class="glass flex"><span id="seconds">00</span></div>
+            <div class="glass flex"><span id="seconds" style="color: #ffe4c1;">00</span></div>
         </div>
 
         <div class="inp visible">
-            <input type="text" placeholder="Hour" class="time-input" />
-            <input type="text" placeholder="Minute" class="time-input" /><button id="button">Başlat</button>
+            <input type="text" placeholder="Minute" class="minute-input" />
+            <button id="button">Başlat</button>
+        </div>
+        <div class="buttons hidden">
         </div>
     </div>
     <script src="main.js"></script>
