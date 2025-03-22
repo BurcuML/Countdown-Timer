@@ -4,21 +4,25 @@ body {
     box-sizing: border-box;
     height: 100vh;
 }
-
 .container {
     background: url("img/cozy\ winter.webp");
     height: 100%;
+    width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     display: grid;
-    place-items: center;
+    align-content: center;
 }
-.glassmorph{
+.glassmorph {
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.center {
+    margin: 0 auto;
+    text-align: center;
 }
 .hidden{
     display: none;
@@ -29,7 +33,7 @@ body {
 .glass {
     margin: 25px;
     width: 13%;
-    height: 25%;
+    height: 110%;
     /* From https://css.glass */
     background: #ffbf4640;
     border-radius: 16px;
@@ -42,6 +46,7 @@ span{
     font-size: 5rem;
     color: #724100;
 }
+
 .inp button{
     background-color: #724100;
     font-size: 1.5rem;
