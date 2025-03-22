@@ -10,9 +10,18 @@ body {
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    flex-direction: row;
 }
-
+.glassmorph{
+    visibility: hidden;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hidden{
+    visibility: visible;
+}
 .glass {
     margin: 25px;
     width: 13%;
@@ -25,7 +34,7 @@ body {
     -webkit-backdrop-filter: blur(9.9px);
     border: 1px solid rgba(255, 191, 70, 0.5);
 }
-.glass span{
+span{
     font-size: 5rem;
     color: #724100;
 }
