@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <title>Countdown Timer</title>
-  </head>
+</head>
 
-  <body>
-    <div class="container flex">
-        <button id="button">Başlat</button>
+<body>
+    <div class="container">
         <div class="glassmorph hidden" id="glassmorph">
-      <div class="glass flex">
-        <span id="hours">00</span>
-      </div>
-      <div class="glass flex"><span id="minutes">00</span></div>
-      <div class="glass flex"><span id="seconds">00</span></div>            
+            <div class="glass flex">
+                <span id="hours">00</span>
+            </div>
+            <div class="glass flex"><span id="minutes">00</span></div>
+            <div class="glass flex"><span id="seconds">00</span></div>
+        </div>
+
+        <div class="inp visible">
+            <input type="text" placeholder="Hour" class="time-input" />
+            <input type="text" placeholder="Minute" class="time-input" /><button id="button">Başlat</button>
         </div>
     </div>
     <script src="main.js"></script>
-  </body>
+</body>
+
 </html>
