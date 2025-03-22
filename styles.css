@@ -31,18 +31,18 @@ body {
     width: 13%;
     height: 25%;
     /* From https://css.glass */
-    background: rgba(255, 191, 70, 0.25);
+    background: #ffbf4640;
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 30px #0000001a;
     backdrop-filter: blur(9.9px);
     -webkit-backdrop-filter: blur(9.9px);
-    border: 1px solid rgba(255, 191, 70, 0.5);
+    border: 1px solid #ffbf4680;
 }
 span{
     font-size: 5rem;
     color: #724100;
 }
-button{
+.inp button{
     background-color: #724100;
     font-size: 1.5rem;
     color: #fff;
@@ -51,6 +51,11 @@ button{
     border-radius: 15px;
     outline: none;
     animation: glow 3s linear infinite;
+}
+.buttons{
+
+    width: 50%;
+    padding: 17px;
 }
 @keyframes glow {
     0% {
