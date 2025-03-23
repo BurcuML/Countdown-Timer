@@ -20,16 +20,7 @@ body {
     justify-content: center;
     align-items: center;
 }
-.center {
-    margin: 0 auto;
-    text-align: center;
-}
-.hidden{
-    display: none;
-}
-.visible{
-    visibility: visible;
-}
+
 .glass {
     margin: 25px;
     width: 13%;
@@ -46,25 +37,65 @@ span{
     font-size: 5rem;
     color: #724100;
 }
-
 .buttons{
     text-align: center;
-    width: 100%;
     padding: 17px;
     margin-top: 25px;
 }
 .btns{
+    cursor: pointer;
     background-color: #724100;
     font-size: 1.5rem;
     color: #fff;
     width: 7.5rem;
-    padding: 17px;
+    padding: 13px;
     border-radius: 15px;
     outline: none;
     animation: glow 3s linear infinite;
 }
 .buttons button{
     margin: 0 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .glass {
+        width: 80%;
+        height: auto;
+    }
+    span {
+        font-size: 3rem;
+    }
+    .btns {
+        font-size: 1rem;
+        width: 6rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .glass {
+        width: 90%;
+        margin: 15px;
+    }
+    span {
+        font-size: 2rem;
+    }
+    .btns {
+        font-size: 0.9rem;
+        width: 5.5rem;
+        padding: 8px;
+    }
+}
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+.hidden{
+    display: none;
+}
+.visible{
+    visibility: visible;
 }
 @keyframes glow {
     0% {
@@ -88,15 +119,14 @@ span{
         box-shadow: 0 0 35px #ffffff;
         box-shadow: 0 0 40px #ffffff;
     }
-    
 }
 .inp{
-    width: 10%;
+    width: 13%;
     text-align: center;
 }
 .inp input {
     font-size: 1.5rem;
-    width: 110px;
+    width: 130px;
     height: 110px;
     box-sizing: border-box;
     padding: 15px;
@@ -110,51 +140,3 @@ span{
     justify-content: center;
     align-items: center;   
 }
-
-
-
-
-
-
-
-
-@media (max-width: 768px) {
-    .glass {
-        width: 13%;
-        height: 13%;
-    }
-    span {
-        font-size: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .glass {
-        width: 13%;
-        height: 13%;
-    }
-    span {
-        font-size: 1.2rem;
-    }
-}
-
-@media (max-width: 320px) {
-    .glass {
-        width: 10%;
-        height: 10%;
-    }
-    span {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 240px) {
-    .glass {
-        width: 10%;
-        height: 10%;
-    }
-    span {
-        font-size: 0.1rem;
-    }
-}
-
