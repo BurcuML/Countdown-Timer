@@ -4,40 +4,86 @@ const seconds = document.getElementById("seconds");
 const glass = document.querySelector(".glass")
 const visible = document.getElementById("glassmorph")
 const input = document.querySelector(".inp")
-const hour = document.querySelector(".hour-input")
-const minute = document.querySelector(".minute-input")
+const minute = parseInt(document.querySelector(".minute-input").value)
+const second = parseInt(document.querySelector(".second-input").value)
 const btns = document.querySelector(".buttons")
+const startButton = document.getElementById("startButton")
 
-const btn = document.getElementById("button")
-let currentTime = new Date();
+let countdownInterval;
+let isPaused = false;
+let totalSeconds=0;
 
+startButton.addEventListener('click', () => {
 
-minutes.textContent = currentTime.getMinutes();
-seconds.textContent = currentTime.getSeconds();
+    if (!isNaN(minute) && minute >= 0 && second >= 0 && second < 60) {
+        totalSeconds = (minute * 60) + second;
+/*         if(second==""){
+            second="00";
+        } */
 
-
-btn.addEventListener('click', () => {
-    if (visible.classList.contains("hidden")) {
-        visible.classList.remove("hidden");
+    }else{
+        alert("Lütfen geçerli bir süre girin!");
+        return
     }
+
+    visible.classList.remove("hidden");
     btns.classList.remove("hidden");
+    input.style.display = "none";
+    startButton.style.display = "none";
 
-    input.style.display = "none"
-    btn.style.display = "none";
-    let stop = document.createElement("button")
-    let cont = document.createElement("button")
-    let reset = document.createElement("button")
-    stop.textContent = "Stop"
-    cont.textContent = "Continue"
-    reset.textContent = "Reset"
-    btns.classList.add("buttons")
-    stop.classList.add("btns")
-    cont.classList.add("btns")
-    reset.classList.add("btns")
+    // Remove existing buttons to prevent duplicates
+    while (btns.firstChild) {
+        btns.removeChild(btns.firstChild);
+    }
 
-    /*     buton.addEventListener('click', () => {
-            });  */
-    btns.appendChild(stop)
-    btns.appendChild(cont)
-    btns.appendChild(reset)
+    // Yeni butonları oluştur
+    let stop = document.createElement("button");
+    let cont = document.createElement("button");
+    let reset = document.createElement("button");
+
+    stop.textContent = "Stop";
+    cont.textContent = "Continue";
+    reset.textContent = "Reset";
+
+    btns.classList.add("buttons");
+    stop.classList.add("btns");
+    cont.classList.add("btns");
+    reset.classList.add("btns");
+
+    // Butonları ekle
+    btns.appendChild(stop);
+    btns.appendChild(cont);
+    btns.appendChild(reset);
+    
+    //Geri sayımı başlatmak için
+    startCountdown()
+
+    //Stop butonu
+    stop.addEventListener('click', () => {
+        clearInterval(countdownInterval); // Geri sayımı durdurur
+    });
+
+    // Reset butonuna olay ekle
+    reset.addEventListener('click', () => {
+        clearInterval(countdownInterval);
+        totalSeconds = 0;
+        visible.classList.add("hidden");
+        btns.classList.add("hidden");
+        input.style.display = "inline";
+        startButton.style.display = "inline";
+        minutes.textContent = "00";
+        seconds.textContent = "00";
+
+        // Butonları temizle
+        while (btns.firstChild) {
+            btns.removeChild(btns.firstChild);
+        }
+
+    });
 });
+
+function startCountdown() {
+    countdownInterval = setInterval(() => {
+
+    })
+}
