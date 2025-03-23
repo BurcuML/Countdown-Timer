@@ -47,7 +47,13 @@ span{
     color: #724100;
 }
 
-.inp button{
+.buttons{
+    text-align: center;
+    width: 100%;
+    padding: 17px;
+    margin-top: 25px;
+}
+.btns{
     background-color: #724100;
     font-size: 1.5rem;
     color: #fff;
@@ -57,10 +63,8 @@ span{
     outline: none;
     animation: glow 3s linear infinite;
 }
-.buttons{
-
-    width: 50%;
-    padding: 17px;
+.buttons button{
+    margin: 0 10px;
 }
 @keyframes glow {
     0% {
