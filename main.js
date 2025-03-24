@@ -15,16 +15,17 @@ let totalSeconds=0;
 
 startButton.addEventListener('click', () => {
 
-    if (!isNaN(minute) && minute >= 0 && second >= 0 && second < 60) {
+ /*   if (!isNaN(minute) && minute >= 0 && second >= 0 && second < 60) {
         totalSeconds = (minute * 60) + second;
-/*         if(second==""){
+         if(second==""){
             second="00";
-        } */
+        } 
 
-    }else{
+    }
+    else{
         alert("Lütfen geçerli bir süre girin!");
         return
-    }
+    }*/
 
     visible.classList.remove("hidden");
     btns.classList.remove("hidden");
@@ -84,6 +85,6 @@ startButton.addEventListener('click', () => {
 
 function startCountdown() {
     countdownInterval = setInterval(() => {
-
+        
     })
 }
