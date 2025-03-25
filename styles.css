@@ -20,7 +20,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
 .glass {
     margin: 25px;
     width: 13%;
@@ -42,7 +41,6 @@ span{
     padding: 17px;
     margin-top: 25px;
 }
-
 .btns{
     cursor: pointer;
     background-color: #724100;
@@ -121,10 +119,7 @@ span{
         box-shadow: 0 0 40px #ffffff;
     }
 }
-.inp{
-    width: 13%;
-    text-align: center;
-}
+
 .inp input {
     font-size: 1.8rem;
     width: 150px;
