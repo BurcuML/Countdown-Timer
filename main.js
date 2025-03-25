@@ -4,21 +4,19 @@ const seconds = document.getElementById("seconds");
 const glass = document.querySelector(".glass")
 const visible = document.getElementById("glassmorph")
 const input = document.querySelector(".inp")
-const minute = document.querySelector(".minute-input")
-const second = document.querySelector(".second-input")
 const btns = document.querySelector(".buttons")
 const startButton = document.getElementById("startButton")
 
 let countdownInterval;
+let isPaused = false;
 let totalSeconds = 0;
 
 startButton.addEventListener('click', () => {
+     // burada hata almıştım ve bunun sebebi bu değişkenleri başta tanımlamam ve bu değerlerin click eventinde güncellenmemesiydi
+    const minute = parseInt(document.querySelector(".minute-input").value.trim()) || 0;
+    const second = parseInt(document.querySelector(".second-input").value.trim()) || 0;
 
-    // Boş veya geçersiz girişleri kontrol et
-    const minuteInp = minute.value === "" ? 0 : parseInt(minute);
-    const secondInp = second.value === "" ? 0 : parseInt(second);
-
-    if (isNaN(minuteInp) || isNaN(secondInp) || minuteInp < 0 || secondInp < 0 || secondInp >= 60) {
+    if (isNaN(minute) || isNaN(second) || minute < 0 || second < 0 || second >= 60) {
         alert("Lütfen geçerli bir dakika ve saniye girin!");
         return;
     }
@@ -34,6 +32,8 @@ startButton.addEventListener('click', () => {
     btns.classList.remove("hidden");
     input.style.display = "none";
     startButton.style.display = "none";
+
+    minute.innerHTML = "";
 
     // Yeni butonları oluştur
     let stop = document.createElement("button");
@@ -54,6 +54,7 @@ startButton.addEventListener('click', () => {
     btns.appendChild(cont);
     btns.appendChild(reset);
 
+    isPaused=false;
     //Geri sayımı başlatmak için
     startCountdown()
 
@@ -73,20 +74,25 @@ startButton.addEventListener('click', () => {
         minutes.textContent = "00";
         seconds.textContent = "00";
 
+    // Continue butonuna olay ekle
+     cont.addEventListener('click', () => {
+       
+    if (isPaused) {
+        isPaused=false;
+        startCountdown(); // Durdurulan geri sayımı devam ettir
+    }
+
+
+});
         // Butonları temizle
         while (btns.firstChild) {
-            btns.removeChild(btns.firstChild);
+            btns.removeChild(btns.firstChild); //butonların tekrarlanmasını önlüyor
         }
 
     });
 });
 
-// Continue butonuna olay ekle
-cont.addEventListener('click', () => {
-    if (totalSeconds > 0) {
-        startCountdown(); // Durdurulan geri sayımı devam ettir
-    }
-});
+
 
 function startCountdown() {
     countdownInterval = setInterval(() => {
@@ -97,8 +103,8 @@ function startCountdown() {
             const mins = Math.floor(totalSeconds / 60);
             const secs = totalSeconds % 60;
 
-            minutes.textContent = String(mins).padStart(2, "0");
-            seconds.textContent = String(secs).padStart(2, "0");
+            minutes.innerHTML = String(mins).padStart(2, "0");
+            seconds.innerHTML = String(secs).padStart(2, "0");
 
         } else {
             clearInterval(countdownInterval);
