@@ -7,10 +7,26 @@ const input = document.querySelector(".inp")
 const btns = document.querySelector(".buttons")
 const startButton = document.getElementById("startButton")
 
+
+const audioContainer = document.createElement("div");
+audioContainer.classList.add("hidden");
+
+const audioElement = document.createElement("audio");
+audioElement.loop = true;
+
+const sourceElement = document.createElement("source");
+sourceElement.src = "audio/ticking clock.mp3";
+sourceElement.type = "audio/mp3";
+
+audioElement.appendChild(sourceElement);
+audioContainer.appendChild(audioElement);
+document.body.appendChild(audioContainer);
+
 let countdownInterval;
 let totalSeconds = 0;
 
 startButton.addEventListener('click', () => {
+
      // burada hata almıştım ve bunun sebebi bu değişkenleri başta tanımlamam ve bu değerlerin click eventinde güncellenmemesiydi
     const minute = parseInt(document.querySelector(".minute-input").value.trim()) || 0;
     const second = parseInt(document.querySelector(".second-input").value.trim()) || 0;
@@ -25,6 +41,11 @@ startButton.addEventListener('click', () => {
     if (totalSeconds <= 0) {
         alert("Lütfen sıfırdan büyük bir süre girin!");
         return;
+    }
+
+    // Butonları temizle
+    while (btns.firstChild) {
+        btns.removeChild(btns.firstChild); //butonların tekrarlanmasını önlüyor
     }
 
     visible.classList.remove("hidden");
@@ -56,21 +77,8 @@ startButton.addEventListener('click', () => {
     //Geri sayımı başlatmak için
     startCountdown();
 
-    // Add audio element dynamically
-    const audioContainer = document.createElement("div");
-    audioContainer.classList.add("hidden");
-
-    const audioElement = document.createElement("audio");
-    audioElement.loop = true;
-    audioElement.autoplay = true;
-
-    const sourceElement = document.createElement("source");
-    sourceElement.src = "audio/ticking clock.mp3";
-    sourceElement.type = "audio/mp3";
-
-    audioElement.appendChild(sourceElement);
-    audioContainer.appendChild(audioElement);
-    document.body.appendChild(audioContainer);
+    //audio'yu butona basıldıktan sonra başlat
+    audioElement.play()
 
     //Stop butonu
     stop.addEventListener('click', () => {
@@ -78,8 +86,8 @@ startButton.addEventListener('click', () => {
         audioElement.pause();
     });
 
-// Reset butonuna olay ekle
-reset.addEventListener('click', () => {
+    // Reset butonuna olay ekle
+    reset.addEventListener('click', () => {
     clearInterval(countdownInterval);
     totalSeconds = 0;
     visible.classList.add("hidden");
@@ -94,6 +102,7 @@ reset.addEventListener('click', () => {
     while (btns.firstChild) {
         btns.removeChild(btns.firstChild); //butonların tekrarlanmasını önlüyor
     }
+    
 });
 
 // Continue butonuna olay ekle
@@ -101,6 +110,7 @@ cont.addEventListener('click', () => {
     startCountdown(); // Durdurulan geri sayımı devam ettir
     audioElement.play();
 });
+
 });
 
 
@@ -123,10 +133,10 @@ function startCountdown() {
             clearInterval(countdownInterval);
             minutes.textContent = "00";
             seconds.textContent = "00";
-            alert("Süre doldu!");
             // 🔇 Ses durdurulsun
-            audioElement.currentTime = 0;
-            audioElement.pause()
+            audioElement.pause()            
+            alert("Süre doldu!");
+
             
         } 
     }, 1000);
