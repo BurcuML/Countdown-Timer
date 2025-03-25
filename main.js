@@ -4,25 +4,29 @@ const seconds = document.getElementById("seconds");
 const glass = document.querySelector(".glass")
 const visible = document.getElementById("glassmorph")
 const input = document.querySelector(".inp")
-const minute = parseInt(document.querySelector(".minute-input").value)
-const second = parseInt(document.querySelector(".second-input").value)
+const minute = document.querySelector(".minute-input")
+const second = document.querySelector(".second-input")
 const btns = document.querySelector(".buttons")
 const startButton = document.getElementById("startButton")
 
 let countdownInterval;
-let totalSeconds=0;
+let totalSeconds = 0;
 
 startButton.addEventListener('click', () => {
 
-    if (!isNaN(minute) && minute >= 0 && second >= 0 && second < 60) {
-        totalSeconds = (minute * 60) + second;
-/*         if(second==""){
-            second="00";
-        } */
+    // Boş veya geçersiz girişleri kontrol et
+    const minuteInp = minute.value === "" ? 0 : parseInt(minute);
+    const secondInp = second.value === "" ? 0 : parseInt(second);
 
+    if (isNaN(minuteInp) || isNaN(secondInp) || minuteInp < 0 || secondInp < 0 || secondInp >= 60) {
+        alert("Lütfen geçerli bir dakika ve saniye girin!");
+        return;
     }
-    else{
-        alert("Lütfen geçerli bir süre girin!");
+
+    totalSeconds = (minute * 60) + second;
+
+    if (totalSeconds <= 0) {
+        alert("Lütfen sıfırdan büyük bir süre girin!");
         return;
     }
 
@@ -49,7 +53,7 @@ startButton.addEventListener('click', () => {
     btns.appendChild(stop);
     btns.appendChild(cont);
     btns.appendChild(reset);
-    
+
     //Geri sayımı başlatmak için
     startCountdown()
 
@@ -77,12 +81,12 @@ startButton.addEventListener('click', () => {
     });
 });
 
-    // Continue butonuna olay ekle
-    cont.addEventListener('click', () => {
-        if (totalSeconds > 0) {
-            startCountdown(); // Durdurulan geri sayımı devam ettir
-        }
-    });
+// Continue butonuna olay ekle
+cont.addEventListener('click', () => {
+    if (totalSeconds > 0) {
+        startCountdown(); // Durdurulan geri sayımı devam ettir
+    }
+});
 
 function startCountdown() {
     countdownInterval = setInterval(() => {
@@ -103,5 +107,5 @@ function startCountdown() {
             alert("Süre doldu!");
         }
     }, 1000);
-    
+
 }
