@@ -10,32 +10,26 @@ const btns = document.querySelector(".buttons")
 const startButton = document.getElementById("startButton")
 
 let countdownInterval;
-let isPaused = false;
 let totalSeconds=0;
 
 startButton.addEventListener('click', () => {
 
- /*   if (!isNaN(minute) && minute >= 0 && second >= 0 && second < 60) {
+    if (!isNaN(minute) && minute >= 0 && second >= 0 && second < 60) {
         totalSeconds = (minute * 60) + second;
-         if(second==""){
+/*         if(second==""){
             second="00";
-        } 
+        } */
 
     }
     else{
         alert("Lütfen geçerli bir süre girin!");
-        return
-    }*/
+        return;
+    }
 
     visible.classList.remove("hidden");
     btns.classList.remove("hidden");
     input.style.display = "none";
     startButton.style.display = "none";
-
-    // Remove existing buttons to prevent duplicates
-    while (btns.firstChild) {
-        btns.removeChild(btns.firstChild);
-    }
 
     // Yeni butonları oluştur
     let stop = document.createElement("button");
@@ -83,8 +77,31 @@ startButton.addEventListener('click', () => {
     });
 });
 
+    // Continue butonuna olay ekle
+    cont.addEventListener('click', () => {
+        if (totalSeconds > 0) {
+            startCountdown(); // Durdurulan geri sayımı devam ettir
+        }
+    });
+
 function startCountdown() {
     countdownInterval = setInterval(() => {
-        
-    })
+        if (totalSeconds > 0) {
+            totalSeconds--;
+
+            // Dakika ve saniyeyi hesapla
+            const mins = Math.floor(totalSeconds / 60);
+            const secs = totalSeconds % 60;
+
+            minutes.textContent = String(mins).padStart(2, "0");
+            seconds.textContent = String(secs).padStart(2, "0");
+
+        } else {
+            clearInterval(countdownInterval);
+            minutes.textContent = "00";
+            seconds.textContent = "00";
+            alert("Süre doldu!");
+        }
+    }, 1000);
+    
 }
