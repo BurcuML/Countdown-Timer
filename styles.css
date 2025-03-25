@@ -57,7 +57,6 @@ span{
 .buttons button{
     margin: 0 10px;
 }
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .glass {
