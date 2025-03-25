@@ -8,7 +8,6 @@ const btns = document.querySelector(".buttons")
 const startButton = document.getElementById("startButton")
 
 let countdownInterval;
-let isPaused = false;
 let totalSeconds = 0;
 
 startButton.addEventListener('click', () => {
@@ -54,47 +53,60 @@ startButton.addEventListener('click', () => {
     btns.appendChild(cont);
     btns.appendChild(reset);
 
-    isPaused=false;
     //Geri sayımı başlatmak için
-    startCountdown()
+    startCountdown();
+
+    // Add audio element dynamically
+    const audioContainer = document.createElement("div");
+    audioContainer.classList.add("hidden");
+
+    const audioElement = document.createElement("audio");
+    audioElement.loop = true;
+    audioElement.autoplay = true;
+
+    const sourceElement = document.createElement("source");
+    sourceElement.src = "audio/ticking clock.mp3";
+    sourceElement.type = "audio/mp3";
+
+    audioElement.appendChild(sourceElement);
+    audioContainer.appendChild(audioElement);
+    document.body.appendChild(audioContainer);
 
     //Stop butonu
     stop.addEventListener('click', () => {
         clearInterval(countdownInterval); // Geri sayımı durdurur
+        audioElement.pause();
     });
 
-    // Reset butonuna olay ekle
-    reset.addEventListener('click', () => {
-        clearInterval(countdownInterval);
-        totalSeconds = 0;
-        visible.classList.add("hidden");
-        btns.classList.add("hidden");
-        input.style.display = "inline";
-        startButton.style.display = "inline";
-        minutes.textContent = "00";
-        seconds.textContent = "00";
+// Reset butonuna olay ekle
+reset.addEventListener('click', () => {
+    clearInterval(countdownInterval);
+    totalSeconds = 0;
+    visible.classList.add("hidden");
+    btns.classList.add("hidden");
+    input.style.display = "inline";
+    startButton.style.display = "inline";
+    minutes.textContent = "00";
+    seconds.textContent = "00";
+    audioElement.pause()
 
-    // Continue butonuna olay ekle
-     cont.addEventListener('click', () => {
-       
-    if (isPaused) {
-        isPaused=false;
-        startCountdown(); // Durdurulan geri sayımı devam ettir
+    // Butonları temizle
+    while (btns.firstChild) {
+        btns.removeChild(btns.firstChild); //butonların tekrarlanmasını önlüyor
     }
-
-
 });
-        // Butonları temizle
-        while (btns.firstChild) {
-            btns.removeChild(btns.firstChild); //butonların tekrarlanmasını önlüyor
-        }
 
-    });
+// Continue butonuna olay ekle
+cont.addEventListener('click', () => {
+    startCountdown(); // Durdurulan geri sayımı devam ettir
+    audioElement.play();
+});
 });
 
 
 
 function startCountdown() {
+
     countdownInterval = setInterval(() => {
         if (totalSeconds > 0) {
             totalSeconds--;
@@ -106,12 +118,17 @@ function startCountdown() {
             minutes.innerHTML = String(mins).padStart(2, "0");
             seconds.innerHTML = String(secs).padStart(2, "0");
 
+
         } else {
             clearInterval(countdownInterval);
             minutes.textContent = "00";
             seconds.textContent = "00";
             alert("Süre doldu!");
-        }
+            // 🔇 Ses durdurulsun
+            audioElement.currentTime = 0;
+            audioElement.pause()
+            
+        } 
     }, 1000);
 
 }
