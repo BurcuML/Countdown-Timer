@@ -28,7 +28,8 @@ let totalSeconds = 0;
 startButton.addEventListener('click', () => {
 
      // burada hata almıştım ve bunun sebebi bu değişkenleri başta tanımlamam ve bu değerlerin click eventinde güncellenmemesiydi
-    const minute = parseInt(document.querySelector(".minute-input").value.trim()) || 0;
+    //Bu kod, bir web sayfasındaki iki farklı input alanından (.minute-input ve .second-input sınıflarına sahip) kullanıcı tarafından girilen değerleri alır, bu değerleri sayıya çevirir ve geçerli bir sayı değilse varsayılan olarak 0 atar.
+     const minute = parseInt(document.querySelector(".minute-input").value.trim()) || 0;
     const second = parseInt(document.querySelector(".second-input").value.trim()) || 0;
 
     if (isNaN(minute) || isNaN(second) || minute < 0 || second < 0 || second >= 60) {
@@ -53,7 +54,6 @@ startButton.addEventListener('click', () => {
     input.style.display = "none";
     startButton.style.display = "none";
 
-    minute.innerHTML = "";
 
     // Yeni butonları oluştur
     let stop = document.createElement("button");
@@ -125,8 +125,8 @@ function startCountdown() {
             const mins = Math.floor(totalSeconds / 60);
             const secs = totalSeconds % 60;
 
-            minutes.innerHTML = String(mins).padStart(2, "0");
-            seconds.innerHTML = String(secs).padStart(2, "0");
+            minutes.textContent = String(mins).padStart(2, "0");
+            seconds.textContent = String(secs).padStart(2, "0");
 
 
         } else {
