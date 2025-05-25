@@ -26,10 +26,12 @@ let countdownInterval;
 let totalSeconds = 0;
 
 startButton.addEventListener('click', () => {
-
-     // burada hata almıştım ve bunun sebebi bu değişkenleri başta tanımlamam ve bu değerlerin click eventinde güncellenmemesiydi
-    //Bu kod, bir web sayfasındaki iki farklı input alanından (.minute-input ve .second-input sınıflarına sahip) kullanıcı tarafından girilen değerleri alır, bu değerleri sayıya çevirir ve geçerli bir sayı değilse varsayılan olarak 0 atar.
-     const minute = parseInt(document.querySelector(".minute-input").value.trim()) || 0;
+     
+/* 
+-burada hata almıştım ve bunun sebebi bu değişkenleri başta tanımlamam ve bu değerlerin click eventinde güncellenmemesiydi
+-Bu kod, bir web sayfasındaki iki farklı input alanından (.minute-input ve .second-input sınıflarına sahip) kullanıcı tarafından girilen değerleri alır,
+bu değerleri sayıya çevirir ve geçerli bir sayı değilse varsayılan olarak 0 atar. */ 
+    const minute = parseInt(document.querySelector(".minute-input").value.trim()) || 0;
     const second = parseInt(document.querySelector(".second-input").value.trim()) || 0;
 
     if (isNaN(minute) || isNaN(second) || minute < 0 || second < 0 || second >= 60) {
@@ -124,7 +126,11 @@ function startCountdown() {
             // Dakika ve saniyeyi hesapla
             const mins = Math.floor(totalSeconds / 60);
             const secs = totalSeconds % 60;
-
+/* 
+padStart fonksiyonu ise bir string'in başına, belirli bir uzunluğa ulaşana kadar karakter ekliyor.
+Örneğin, String(mins).padStart(2, "0") ifadesi, "mins" değişkeninin değerini string'e çeviriyor ve eğer bu string'in uzunluğu 2'den küçükse, başına "0" ekleyerek uzunluğunu 2'ye tamamlıyor. 
+Yani, eğer "mins" 5 ise, bu ifade "05" string'ini döndürüyor. Eğer "mins" 12 ise, bu ifade "12" string'ini döndürüyor.
+*/
             minutes.textContent = String(mins).padStart(2, "0");
             seconds.textContent = String(secs).padStart(2, "0");
 
